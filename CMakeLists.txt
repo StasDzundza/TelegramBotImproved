@@ -15,15 +15,18 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Core Gui Network REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Network Sql REQUIRED)
 
 set (sources
     src/main.cpp
     src/bot.cpp
+    src/post_service.cpp
     # Telegram Types
     src/TelegramTypes/telegram_types_factory.cpp
     # Utils
+    src/Utils/database.cpp
     src/Utils/file_downloader.cpp
+    src/Utils/logger.cpp
     src/Utils/pretty_printers.cpp
     src/Utils/tesseract_ocr.cpp
     src/Utils/text_utils.cpp
@@ -32,12 +35,16 @@ set (sources
 
 set (headers
     src/bot.h
+    src/post_service.h
     # Telegram Types
     src/TelegramTypes/telegram_types.h
     src/TelegramTypes/telegram_types_factory.h
     # Utils
+    src/Utils/database.h
     src/Utils/file_downloader.h
+    src/Utils/logger.h
     src/Utils/pretty_printers.h
+    src/Utils/singleton.h
     src/Utils/tesseract_ocr.h
     src/Utils/text_utils.h
     src/Utils/translater.h
@@ -46,5 +53,5 @@ set (headers
 add_executable(TelegramBotImproved ${sources} ${headers})
 
 target_include_directories(TelegramBotImproved PRIVATE src src/TelegramTypes src/Utils)
-target_link_libraries(TelegramBotImproved PRIVATE Qt5::Core Qt5::Gui Qt5::Network)
+target_link_libraries(TelegramBotImproved PRIVATE Qt5::Core Qt5::Gui Qt5::Network Qt5::Sql)
 target_compile_options(TelegramBotImproved PRIVATE -Werror)

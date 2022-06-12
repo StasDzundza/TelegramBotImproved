@@ -6,7 +6,7 @@ struct Document {
     int file_size;
     QString file_name, mime_type, file_id;
 
-    bool isEmpty() const {  return file_id.isEmpty(); }
+    bool isEmpty() const { return file_id.isEmpty(); }
 };
 
 struct File {

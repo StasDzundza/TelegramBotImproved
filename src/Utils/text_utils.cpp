@@ -79,7 +79,7 @@ QString TextUtils::readFile(const QString& file_path) {
 void TextUtils::writeToFile(const QString& filepath, const QString& text) {
     QFile qFile(filepath);
 
-    if (qFile.open(QIODevice::WriteOnly)) {
+    if (qFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
         QTextStream out(&qFile);
         out << text;
         qFile.close();

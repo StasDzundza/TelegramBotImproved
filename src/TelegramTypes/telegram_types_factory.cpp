@@ -18,7 +18,7 @@ Update TelegramTypesFactory::createUpdate(const QJsonObject& update_json_object)
     Update update;
     const int update_id = update_json_object["update_id"].toInt();
     const Message& message = createMessage(update_json_object["message"].toObject());
-    return { update_id, message };
+    return {update_id, message};
 }
 
 Message TelegramTypesFactory::createMessage(const QJsonObject& message_json_object) {
@@ -45,7 +45,7 @@ Message TelegramTypesFactory::createMessage(const QJsonObject& message_json_obje
 User TelegramTypesFactory::createUser(const QJsonObject& user_json_object) {
     const int id = user_json_object["id"].toInt();
     const QString& username = user_json_object["username"].toString();
-    return { id, username };
+    return {id, username};
 }
 
 File TelegramTypesFactory::createFile(const QJsonObject& file_json_object) {
@@ -53,7 +53,7 @@ File TelegramTypesFactory::createFile(const QJsonObject& file_json_object) {
     const QString& file_id = file_object["file_id"].toString();
     const QString& file_path = file_object["file_path"].toString();
     const int file_size = file_object["file_size"].toInt();
-    return { file_id, file_path, file_size };
+    return {file_id, file_path, file_size};
 }
 
 Document TelegramTypesFactory::createDocument(const QJsonObject& document_json_object) {
@@ -61,7 +61,7 @@ Document TelegramTypesFactory::createDocument(const QJsonObject& document_json_o
     const QString& mime_type = document_json_object["mime_type"].toString();
     const QString& file_id = document_json_object["file_id"].toString();
     const int file_size = document_json_object["file_size"].toInt();
-    return { file_size, file_name, mime_type, file_id };
+    return {file_size, file_name, mime_type, file_id};
 }
 
 QString TelegramTypesFactory::buildJsonCommandKeyboardObject(const QVector<QString>& buttons) {
