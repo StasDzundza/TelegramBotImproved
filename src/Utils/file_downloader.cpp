@@ -20,8 +20,8 @@ TelegramFileDownloader::TelegramFileDownloader(const Bot* bot) : QObject(nullptr
 
 void TelegramFileDownloader::downloadDocument(const Update& update) {
     update_ = update;
-    file_path_request_.setUrl(QUrl("https://api.telegram.org/bot" + bot_token_ +
-                                   "/getFile?file_id=" + update.message.document.file_id));
+    file_path_request_.setUrl(
+        QUrl("https://api.telegram.org/bot" + bot_token_ + "/getFile?file_id=" + update.message.document.file_id));
     file_path_access_manager_.get(file_path_request_);
 }
 
