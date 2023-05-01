@@ -1,12 +1,10 @@
 #pragma once
 
-#include <QMap>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QObject>
-#include <QSet>
 
+#include "post_service.h"
 #include "telegram_types.h"
 
 class Bot : public QObject {
@@ -23,18 +21,14 @@ class Bot : public QObject {
 
    private slots:
     void receiveUpdates(QNetworkReply* reply);
-    void receiveSendingResult(QNetworkReply* reply);
 
    private:
-    QString BOT_TOKEN;
-    QMap<int, QString> last_user_commands_;
-    QNetworkAccessManager update_access_manager_, send_access_manager_;
-    QNetworkRequest update_request_, send_request_;
+    QString bot_token_;
+    QNetworkAccessManager update_access_manager_;
+    QNetworkRequest update_request_;
+    PostService post_service_;
 
     void processUpdate(const Update& update);
     void executeUserCommand(const Update& update);
-    void sendTextMessageToUser(int chat_id, const QString& message);
-    void sendDocumentToUser(int chat_id, const QString& filename);
     void sendReplyToUserCommand(const Update& update);
-    void sendCommandKeyboardToUser(int chat_id);
 };
